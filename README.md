@@ -19,7 +19,10 @@ Tinkercad provides a simulation environment where this circuit can be virtually 
 
 
 ## Circuit Diagram:
- 
+
+ ![WhatsApp Image 2025-09-18 at 13 53 40_da06c07f](https://github.com/user-attachments/assets/c04537fc-10f8-490a-bdb2-27142d416b9a)
+
+
 ## Procedure: //Modify the procedure based on your circuit
 
 Step 1: Set Up the Tinkercad Environment
@@ -53,14 +56,55 @@ Step 7: Save Your Work
 
 
 ## Code:
+```
+#define trigPin  7
+#define echoPin  6
+int buzzer = 2;
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  
+}
+
+void loop()
+{
+  long highPulseDuration;
+  int calculateDistancecm;
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  highPulseDuration = pulseIn(echoPin, HIGH);
+  calculateDistancecm =highPulseDuration*0.034/2;
+  Serial.print("Calculated Distance:");
+  Serial.print(calculateDistancecm);
+  Serial.println("cm");
+  if (calculateDistancecm <100){
+    digitalWrite(2,HIGH);
+    delay(1000);
+  }else{
+    digitalWrite(2,LOW);
+    delay(1000);
+  }
+}
+
+```
 
 
 ## Output:
+
  
+
+https://github.com/user-attachments/assets/39ff71b1-34ce-4f1b-8b7b-07a27650a6cd
+
+
 
 
 ## Result
 
 
-Result:
 The simulation successfully measured the distance between the ultrasonic sensor  HC-SR04 and the object. The real-time distance values were accurately displayed on the serial monitor in centimeters.
